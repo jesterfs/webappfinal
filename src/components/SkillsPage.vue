@@ -43,41 +43,46 @@ export default {
         {
           logo: pythonLogo,
           name: "Python",
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          docLink: "python.org"
+          description: "Data analysis and web development using framwworks like Django.",
+          docLink: "https://www.python.org/"
         },
         {
           logo: djangoLogo,
           name: "Django",
-          description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          docLink: "djangoproject.com"
+          description: "Fullstack web development combined with MySQL databases.",
+          docLink: "https://www.djangoproject.com/"
         },
         {
           logo: javascriptLogo,
           name: "JavaScript",
-          description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
-          docLink: "javascript.com"
+          description: "Web development using JS, HTML, CSS, and frameworks like Vue and React.",
+          docLink: "https://www.javascript.com/"
         },
         {
           logo: html5Logo,
           name: "HTML5",
-          description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+          description: "Web development using HTML, JS, and CSS.",
           docLink: "https://www.w3schools.com/html/"
         },
         {
           logo: cssLogo,
           name: "CSS",
-          description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa.",
+          description: "Web development using CSS, JS, and HTML.",
           docLink: "https://www.w3schools.com/css/"
         },
         {
           logo: vueLogo,
           name: "Vue",
-          description: "Fugiat nulla pariatur, excepteur sint occaecat cupidatat non proident.",
+          description: "Fullstack web development paired with a MySQL database.",
           docLink: "https://vuejs.org/"
         }
       ]
     };
+  },
+  methods: {
+    navigateTo(url) {
+      window.open(url, '_blank'); // Opens the link in a new tab
+    }
   }
 };
 

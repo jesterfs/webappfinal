@@ -55,8 +55,9 @@ h1 {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  min-height: 100vh;
+  max-height: 100vh;
   overflow: auto;
+  padding-bottom: 20px;
 }
 
 #landing-article {
@@ -71,8 +72,8 @@ h1 {
 }
 
 .profile-image {
-  width: 450px;
-  height: 450px;
+  width: 400px;
+  height: 400px;
   border-radius: 300px;
   object-fit: cover;
   margin-bottom: 20px;

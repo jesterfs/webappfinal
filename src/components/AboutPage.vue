@@ -33,9 +33,12 @@
   /* padding-top: 60px;  */
   padding-left: 20px;
   padding-right: 20px; 
+  padding-bottom: 5px;
+  margin-bottom: 0;
+  max-height: 100vh;
   margin: 0; 
   box-sizing: border-box; 
-  min-height: 100vh; 
+  /* min-height: 100vh;  */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -54,7 +57,7 @@
 .embedded-image {
   float: left;
   margin: 0 20px 20px 0;
-  width: 30%; 
+  width: 25%; 
   height: auto;
   border-radius: 10px;
   object-fit: cover;
