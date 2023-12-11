@@ -35,51 +35,78 @@
   
   
   <script>
-  export default {
-    name: "ContactsPage",
-    data() {
-      return {
-        showThankYouMessage: false,
-        contact: {
-          name: '',
-          email: '',
-          message: ''
-        }
-      };
-    },
-    methods: {
-      handleSubmit() {
-        fetch('https://formspree.io/f/xdorqdyo', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            name: this.contact.name,
-            _replyto: this.contact.email,
-            message: this.contact.message
-          })
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(() => {
-          this.showThankYouMessage = true;
-          this.contact = { name: '', email: '', message: '' };
-          setTimeout(() => {
-            this.showThankYouMessage = false;
-          }, 5000);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
+export default {
+  name: "ContactsPage",
+  data() {
+    return {
+      showThankYouMessage: false,
+      contact: {
+        name: '',
+        email: '',
+        message: ''
       }
+    };
+  },
+  methods: {
+    sanitizeInput(input) {
+      // Replace special characters with HTML entities
+      return input.replace(/&/g, "&amp;")
+                  .replace(/</g, "&lt;")
+                  .replace(/>/g, "&gt;")
+                  .replace(/"/g, "&quot;")
+                  .replace(/'/g, "&#039;");
+    },
+    isValidEmail(email) {
+  // Regular expression for basic email validation
+  // eslint-disable-next-line no-useless-escape
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+},
+
+    handleSubmit() {
+      // Sanitize inputs
+      this.contact.name = this.sanitizeInput(this.contact.name);
+      this.contact.message = this.sanitizeInput(this.contact.message);
+
+      // Validate email
+      if (!this.isValidEmail(this.contact.email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      // Proceed with form submission
+      fetch('https://formspree.io/f/xdorqdyo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: this.contact.name,
+          _replyto: this.contact.email,
+          message: this.contact.message
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(() => {
+        this.showThankYouMessage = true;
+        this.contact = { name: '', email: '', message: '' };
+        setTimeout(() => {
+          this.showThankYouMessage = false;
+        }, 5000);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
     }
-  };
-  </script>
+  }
+};
+</script>
+
   
 
 
